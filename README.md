@@ -20,3 +20,7 @@ This is a compatibility-based "FriendFinder" application -- basically a dating a
 - Step 3: The user will answer 10 questions. Each answer is based on a scale from 1 to 5. A “1” is “Strongly Disagree” and a “5” is a “Strongly Agree” option.
 - Once all 10 questions have been answered, the user will submit the form.
 - Once the survey has been submitted, the user will receive a modal pop-up of their best match with a name and photo.
+
+![Screenshot](homepage (1).png)
+
+![Screenshot](survey.png)
