@@ -38,7 +38,7 @@ module.exports = function (app) {
         let totalDifference = 10000;
 
         //Loop through all the friend possibilities in the database.
-        for (let i = 0; i < friends.length; i++) {
+        for (let i = 0; i < friendsArray.length; i++) {
             // console.log('friend=' + JSON.stringify(friends[i]));
 
             //Compute differences for each question
@@ -47,7 +47,7 @@ module.exports = function (app) {
             //Loop through all the scores of each friend.
             for (let j = 0; j < userResponses.length; j++) {
                 //Calculate difference between the scores and sum them into totalDifference
-                diff += Math.abs(friends[i].scores[s] - userResponses[j]);
+                diff += Math.abs(friendsArray[i].scores[s] - userResponses[j]);
             }
 
             //If score is the lowest difference, record friend match
@@ -57,8 +57,8 @@ module.exports = function (app) {
                 // console.log("Friend image =" + friends[i].photo);
 
                 totalDifference = diff;
-                matchName = friends[i].name;
-                matchPhoto = friends[i].photo;
+                matchName = friendsArray[i].name;
+                matchPhoto = friendsArray[i].photo;
             }
 
         }
