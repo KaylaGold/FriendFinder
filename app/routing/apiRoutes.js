@@ -29,8 +29,12 @@ module.exports = function (app) {
         // req.body is available since we're using the body-parser middleware
         //Capturing the user input object
         let userInput = req.body;
+        console.log(friendsArray);
+        console.log(typeof friendsArray);
+        //  Save the user's data to the database, which occurs after the check.
+         friendsArray.push(userInput);
 
-        let userResponses = friendsArray.scores;
+        let userResponses = userInput.scores;
 
         //Comparing user with their best friend match
         let matchName = '';
@@ -63,8 +67,7 @@ module.exports = function (app) {
 
         }
 
-        //Save the user's data to the database, which occurs after the check.
-        friendsArray.push(userInput);
+       
        
 
         //Return a JSON with the user's bestFriendMatch. This will be used by the HTML on the next page.
