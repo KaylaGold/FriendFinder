@@ -4,8 +4,8 @@ let path = require('path');
 // LOAD DATA
 // We are linking our routes to a series of "data" sources.
 // These data sources hold arrays of information on friends.js data.
-let friends = require('../data/friends.js');
-
+let friendsArray = require('../data/friends.js');
+console.log(friends);
 // ===============================================================================
 // ROUTING
 module.exports = function (app) {
@@ -13,7 +13,7 @@ module.exports = function (app) {
     // Below code handles when users "visit" a page.
     // In each of the below cases when a user visits a link
     // (ex: localhost:PORT/api/admin... they are shown a JSON of the data in the survey)
-    app.get('/api/friends', function (req, res) {
+    app.get('/api/friends.js', function (req, res) {
         res.json(friends);
     });
 
@@ -24,7 +24,7 @@ module.exports = function (app) {
     // ...the JSON is pushed to the appropriate JavaScript array
     // (ex. User fills out a  surveu... this data is then sent to the server...
     // Then the server saves the data to the friends array)
-    app.post("/api/friends", function (req, res) {
+    app.post("/api/friends.js", function (req, res) {
         // Note the code here. Our "server" will respond to requests and let users know if they have a friend or not.
         // req.body is available since we're using the body-parser middleware
         //Capturing the user input object
@@ -64,7 +64,8 @@ module.exports = function (app) {
         }
 
         //Save the user's data to the database, which occurs after the check.
-        friends.push(userInput);
+        friendsArray.push(userInput);
+       
 
         //Return a JSON with the user's bestFriendMatch. This will be used by the HTML on the next page.
         res.json({ status: 'OK', matchName: matchName, matchPhoto: matchPhoto});
