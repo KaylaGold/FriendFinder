@@ -30,7 +30,7 @@ module.exports = function (app) {
         //Capturing the user input object
         let userInput = req.body;
 
-        let userResponses = userInput.scores;
+        let userResponses = friendsArray.scores;
 
         //Comparing user with their best friend match
         let matchName = '';
