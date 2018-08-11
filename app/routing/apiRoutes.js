@@ -45,9 +45,9 @@ module.exports = function (app) {
             let diff = 0;
 
             //Loop through all the scores of each friend.
-            for (let s = 0; s < userResponses.length; s++) {
+            for (let j = 0; j < userResponses.length; j++) {
                 //Calculate difference between the scores and sum them into totalDifference
-                diff += Math.abs(friends[i].scores[s] - userResponses[s]);
+                diff += Math.abs(friends[i].scores[s] - userResponses[j]);
             }
 
             //If score is the lowest difference, record friend match
