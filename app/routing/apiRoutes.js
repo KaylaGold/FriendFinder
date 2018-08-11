@@ -64,7 +64,7 @@ module.exports = function (app) {
         }
 
         //Save the user's data to the database, which occurs after the check.
-        friends.push(userData);
+        friends.push(userInput);
 
         //Return a JSON with the user's bestFriendMatch. This will be used by the HTML on the next page.
         res.json({ status: 'OK', matchName: matchName, matchPhoto: matchPhoto});
