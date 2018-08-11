@@ -33,9 +33,9 @@ module.exports = function (app) {
         let userResponses = userInput.scores;
 
         //Comparing user with their best friend match
-        let matchName: "";
-        let matchPhoto: "";
-        let totalDifference: 10000;
+        let matchName= "";
+        let matchPhoto= "";
+        let totalDifference= 10000;
 
         //Loop through all the friend possibilities in the database.
         for (let i = 0; i < friends.length; i++) {
