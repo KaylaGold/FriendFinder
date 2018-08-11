@@ -4,7 +4,7 @@ let path = require('path');
 // LOAD DATA
 // We are linking our routes to a series of "data" sources.
 // These data sources hold arrays of information on friends.js data.
-let friends = require("../data/friends.js");
+let friends = require('../data/friends.js');
 
 // ===============================================================================
 // ROUTING
@@ -13,7 +13,7 @@ module.exports = function (app) {
     // Below code handles when users "visit" a page.
     // In each of the below cases when a user visits a link
     // (ex: localhost:PORT/api/admin... they are shown a JSON of the data in the survey)
-    app.get("/api/friends", function (req, res) {
+    app.get('/api/friends', function (req, res) {
         res.json(friends);
     });
 
@@ -33,13 +33,13 @@ module.exports = function (app) {
         let userResponses = userInput.scores;
 
         //Comparing user with their best friend match
-        let matchName= "";
-        let matchPhoto= "";
-        let totalDifference= 10000;
+        let matchName = '';
+        let matchPhoto = '';
+        let totalDifference = 10000;
 
         //Loop through all the friend possibilities in the database.
         for (let i = 0; i < friends.length; i++) {
-            console.log('friend=' + JSON.stringify(friends[i]));
+            // console.log('friend=' + JSON.stringify(friends[i]));
 
             //Compute differences for each question
             let diff = 0;
@@ -52,9 +52,9 @@ module.exports = function (app) {
 
             //If score is the lowest difference, record friend match
             if (diff < totalDifference) {
-                console.log('Closest match found=' + diff);
-                console.log('Friend name =' + friends[i].name);
-                console.log("Friend image =" + friends[i].photo);
+                // console.log('Closest match found=' + diff);
+                // console.log('Friend name =' + friends[i].name);
+                // console.log("Friend image =" + friends[i].photo);
 
                 totalDifference = diff;
                 matchName = friends[i].name;
