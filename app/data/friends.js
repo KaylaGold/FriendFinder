@@ -1,8 +1,8 @@
 let friendsArray = [
     {
-        'name:' 'Kayla',
-        'photo:' "../public/assets/kayla.png",
-        'scores:' [
+        'name': 'Kayla',
+        'photo': "../public/assets/kayla.png",
+        'scores': [
             '5',
             '1',
             '4',
