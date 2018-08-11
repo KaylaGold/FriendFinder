@@ -253,80 +253,41 @@
 
     </div>
     <script type="text/javascript"> 
-        //Displayed results on Modal
-        // $('#submit').on('click', function (event) {
-        //     event.preventDefault();
+        // Displayed results on Modal
+        $('#submit').on('click', function (event) {
+            event.preventDefault();
 
-        //     //Form Validation
-        //     let valid = true;
+            //Form Validation
+            let valid = true;
 
-        //     if ($('#name').val() === "" || $('#photo').val() === "") {
-        //         valid = false;
-        //     } else if ($('#q1').val() === "empty" || $('#q2').val() === "empty" || $('#q3').val() === "empty" || $('#q4').val() === "empty" || $('#q5').val() === "empty" || $('#q6').val() === "empty" || $('#q7').val() === "empty" || $('#q8').val() === "empty" || $('#q9').val() === "empty" || $('#q10').val() === "empty") {
-        //         valid = false;
-        //     }
+            if ($('#name').val() === "" || $('#photo').val() === "") {
+                valid = false;
+            } else if ($('#q1').val() === "empty" || $('#q2').val() === "empty" || $('#q3').val() === "empty" || $('#q4').val() === "empty" || $('#q5').val() === "empty" || $('#q6').val() === "empty" || $('#q7').val() === "empty" || $('#q8').val() === "empty" || $('#q9').val() === "empty" || $('#q10').val() === "empty") {
+                valid = false;
+            }
 
-        //     if (valid === true) {
+            if (valid === true) {
 
-        //         //Object for newUser data
-        //         let newUser = {
-        //             name: $('#name').val().trim(),
-        //             photo: $('#photo').val().trim(),
-        //             scores: [
-        //                 $('#q1').val(),
-        //                 $('#q2').val(),
-        //                 $('#q3').val(),
-        //                 $('#q4').val(),
-        //                 $('#q5').val(),
-        //                 $('#q6').val(),
-        //                 $('#q7').val(),
-        //                 $('#q8').val(),
-        //                 $('#q9').val(),
-        //                 $('#q10').val(),
-        //             ]
-        //         };
-        //         console.log(newUser);
-        //         // //Grab URL of current Website
-        //         // let currentURL = window.location.origin;
-
-
-    // Capture the form inputs
-    $("#submit").on("click", function(event) {
-      event.preventDefault();
-      // Form validation
-      function validateForm() {
-        let isValid = true;
-        $(".form-control").each(function() {
-          if ($(this).val() === "") {
-            isValid = false;
-          }
-        });
-        $(".select").each(function() {
-          if ($(this).val() === "") {
-            isValid = false;
-          }
-        });
-        return isValid;
-      }
-      // If all required fields are filled
-      if (validateForm()) {
-        // Create an object for the user"s data
-        let newUser = {
-          name: $("#name").val(),
-          photo: $("#photo").val(),
-          scores: [
-            $("#q1").val(),
-            $("#q2").val(),
-            $("#q3").val(),
-            $("#q4").val(),
-            $("#q5").val(),
-            $("#q6").val(),
-            $("#q7").val(),
-            $("#q8").val(),
-            $("#q9").val(),
-            $("#q10").val()
-          ]
-        };
+                //Object for newUser data
+                let newUser = {
+                    name: $('#name').val().trim(),
+                    photo: $('#photo').val().trim(),
+                    scores: [
+                        $('#q1').val(),
+                        $('#q2').val(),
+                        $('#q3').val(),
+                        $('#q4').val(),
+                        $('#q5').val(),
+                        $('#q6').val(),
+                        $('#q7').val(),
+                        $('#q8').val(),
+                        $('#q9').val(),
+                        $('#q10').val(),
+                    ]
+                };
+                console.log(newUser);
+                // //Grab URL of current Website
+                // let currentURL = window.location.origin;
 
      //AJAX post the data to friends API
                 $.post("/api/friends", newUser, function (data) {
