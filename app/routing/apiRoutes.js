@@ -1,7 +1,10 @@
+//Required dependecies
+let path = require('path');
+
 // LOAD DATA
 // We are linking our routes to a series of "data" sources.
 // These data sources hold arrays of information on friends.js data.
-let friends = require("../data/friends");
+let friends = require("../data/friends.js");
 
 // ===============================================================================
 // ROUTING
@@ -24,41 +27,38 @@ module.exports = function (app) {
     app.post("/api/friends", function (req, res) {
         // Note the code here. Our "server" will respond to requests and let users know if they have a friend or not.
         // req.body is available since we're using the body-parser middleware
+        //Capturing the user input object
+        let userInput = req.body;
+
+        let userResponses = userInput.scores;
+
         //Comparing user with their best friend match
-        //Object to hold the best friend match
-        let bestFriendMatch = {
-            name: "",
-            photo: "",
-            matchDifference: 1000
-        };
-
-
-
-        //Take the result of the user's survey POST and parse it.
-        let userData = req.body;
-        let userName = userData.name;
-        let userPhoto = userData.photo;
-        let userScores = userData.scores;
-
-        let totalDifference = 0;
+        let matchName: "";
+        let matchPhoto: "";
+        let totalDifference: 10000;
 
         //Loop through all the friend possibilities in the database.
         for (let i = 0; i < friends.length; i++) {
-            console.log(friends[i].name);
-            totalDifference = 0;
+            console.log('friend=' + JSON.stringify(friends[i]));
+
+            //Compute differences for each question
+            let diff = 0;
 
             //Loop through all the scores of each friend.
-            for (let s = 0; s < friends[i].scores[s]; s++) {
+            for (let s = 0; s < userResponses.length; s++) {
                 //Calculate difference between the scores and sum them into totalDifference
-                totalDifference += Math.abs(parseInt(userScores[s]) - parseInt(friends[i].scores[s]));
+                diff += Math.abs(friends[i].scores[s] - userResponses[s]);
+            }
 
-                //If the sum of totalDifference is less than the difference of the best match
-                //reset the bestFriendMatch as the new friend.
-                if (totalDifference <= bestFriendMatch.matchDifference) {
-                    bestFriendMatch.name = friends[i].name;
-                    bestFriendMatch.photo = friends[i].photo;
-                    bestFriendMatch.matchDifference = totalDifference;
-                }
+            //If score is the lowest difference, record friend match
+            if (diff < totalDifference) {
+                console.log('Closest match found=' + diff);
+                console.log('Friend name =' + friends[i].name);
+                console.log("Friend image =" + friends[i].photo);
+
+                totalDifference = diff;
+                matchName = friends[i].name;
+                matchPhoto = friends[i].photo;
             }
 
         }
@@ -67,7 +67,8 @@ module.exports = function (app) {
         friends.push(userData);
 
         //Return a JSON with the user's bestFriendMatch. This will be used by the HTML on the next page.
-        res.json(bestFriendMatch);
+        res.json({ status: 'OK', matchName: matchName, matchPhoto: matchPhoto});
+
     });
 
 
