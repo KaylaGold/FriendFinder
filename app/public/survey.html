@@ -7,10 +7,8 @@
     <title>FriendFinder | Survey </title>
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <!-- Latest compiled and minified CSS & JS -->
-    <script
-    src="https://code.jquery.com/jquery-3.3.1.min.js"
-    integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8="
-    crossorigin="anonymous"></script>
+    <script src="https://code.jquery.com/jquery-3.3.1.min.js" integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8="
+        crossorigin="anonymous"></script>
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap-theme.min.css" integrity="sha384-rHyoN1iRsVXV4nD0JutlnGaslCJuC7uwjduW9SVrLvRYooPp2bWYgmgJQIXwl/Sp"
         crossorigin="anonymous">
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa"
@@ -215,13 +213,6 @@
     </div>
 
 
-    <div class="container">
-        <h2>Best Friend Match</h2>
-        <!-- Button to Open the Modal -->
-        <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#myModal">
-            Open Friend Finder
-        </button>
-
         <!-- The Modal -->
         <div class="modal" id="newMatchFriendModal">
             <div class="modal-dialog">
@@ -256,18 +247,14 @@
         // Displayed results on Modal
         $('#submit').on('click', function (event) {
             event.preventDefault();
-
             //Form Validation
             let valid = true;
-
             if ($('#name').val() === "" || $('#photo').val() === "") {
                 valid = false;
             } else if ($('#q1').val() === "empty" || $('#q2').val() === "empty" || $('#q3').val() === "empty" || $('#q4').val() === "empty" || $('#q5').val() === "empty" || $('#q6').val() === "empty" || $('#q7').val() === "empty" || $('#q8').val() === "empty" || $('#q9').val() === "empty" || $('#q10').val() === "empty") {
                 valid = false;
             }
-
             if (valid === true) {
-
                 //Object for newUser data
                 let newUser = {
                     name: $('#name').val().trim(),
@@ -288,24 +275,18 @@
                 console.log(newUser);
                 // //Grab URL of current Website
                 // let currentURL = window.location.origin;
-
-     //AJAX post the data to friends API
+                //AJAX post the data to friends API
                 $.post("/api/friends", newUser, function (data) {
                     //Grab results from AJAX post to display the best match's name and photo
                     $('#newMatchFriend').text(data.name);
                     $('#newMatchFriend-img').attr('src', data.photo);
                     $('.modal').modal('toggle');
-
                 });
             } else {
                 //If a required field is missing then show alert
                 alert("Please complete the Survey. Required field is missing.");
             }
-
-
         });
-
-
     </script>
 </body>
 
